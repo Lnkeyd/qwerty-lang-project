@@ -1,0 +1,38 @@
+.navbar {
+  height: 62px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: wheat;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.navbar svg {
+  height: 34px;
+  width: 34px;
+}
+
+.list {
+  min-width: 420px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+}
+
+.listItem {
+  font-size: 16px;
+}
+
+.login {
+  min-width: 34px;
+}
+/*# sourceMappingURL=navbar.module.css.map */

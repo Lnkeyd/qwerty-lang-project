@@ -1,0 +1,23 @@
+.container {
+    height: '70px';
+    .flex {
+        display: flex;
+        flex-direction: column; 
+        position: absolute; 
+        left: 0;
+        right: 0; 
+        bottom: 12px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+.icon {
+    width: 34px;
+    height: 34px;
+    color: black;
+    opacity: .5;
+}
+.text {
+    opacity: .6;
+    font-size: 16px;
+}

@@ -1,0 +1,28 @@
+.navbar {
+    height: 62px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: wheat;
+    padding-left: 30px;
+    padding-right: 30px;
+    svg {
+        height: 34px;
+        width: 34px;
+    }
+}
+
+.list {
+    min-width: 420px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.listItem {
+    font-size: 16px;
+}
+
+.login {
+    min-width: 34px;
+}
