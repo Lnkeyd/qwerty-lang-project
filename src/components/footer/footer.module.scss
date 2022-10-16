@@ -1,16 +1,10 @@
 .container {
-    height: '70px';
-    .flex {
-        display: flex;
-        flex-direction: column; 
-        position: absolute; 
-        left: 0;
-        right: 0; 
-        bottom: 12px;
-        align-items: center;
-        justify-content: flex-end;
-    }
+    height: 90px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 12px;
 }
+
 .icon {
     width: 34px;
     height: 34px;

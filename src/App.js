@@ -10,6 +10,7 @@ import './styles/general.css'
 function App() {
   return (
     <BrowserRouter>
+        <div className="App-content">
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -17,7 +18,8 @@ function App() {
           <Route path="/word-of-the-day" element={<WordOfTheDay/>}/>
           <Route path="/sets" element={<StudySets/>}/>
         </Routes>
-        <Footer/>
+      </div>
+      <Footer/>
     </BrowserRouter>
   );
 }

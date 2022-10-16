@@ -4,7 +4,6 @@ import he from 'he'
 const WordOfTheDay = () => {
 window.AudioContext = window.AudioContext||window.webkitAudioContext;
 const myAudioContext = new AudioContext();
-const audioCtx = new AudioContext();
 
 //https://random-word-api.herokuapp.com/word
 //https://www.wordsapi.com/
@@ -14,17 +13,19 @@ const audioCtx = new AudioContext();
   const [wordOfTheDay, setWordOfTheDay] = useState('')
   const [definition, setDefinition] = useState([])
   const [examples, setExamples] = useState([])
-  const [audio, setAudio] = useState()
+  const [audio, setAudio] = useState('')
+  const [picture, setPicture] = useState('')
 
   const chainReq = async () => {
     const getRandomWord = await fetch('https://random-word-api.herokuapp.com/word?lang=en').then(res => res.json())
     setWordOfTheDay(getRandomWord)
-    const getDefinition = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${getRandomWord}?key=${process.env.REACT_APP_WEBSTER_KEY}`).then(res => res.json())
-    setDefinition(getDefinition[0].shortdef)
-    const example = await getDefinition[0]?.def?.[0]?.sseq?.[0]?.[0]?.[1]?.dt?.[1]?.[1]?.[0]?.t
+    const data = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${getRandomWord}?key=${process.env.REACT_APP_WEBSTER_KEY}`).then(res => res.json())
+    setDefinition(data[0]?.shortdef)
+    const example = await data[0]?.def?.[0]?.sseq?.[0]?.[0]?.[1]?.dt?.[1]?.[1]?.[0]?.t
     const decoded = await example?.toString().replaceAll(/{..}/g,"").replaceAll(/{\/..}/g, "")
     setExamples( example ? he.decode(decoded) : 'No examples found')
-    setAudio(getDefinition[0].hwi.prs[0].sound.audio)
+    setAudio(data[0]?.hwi?.prs[0]?.sound?.audio)
+    setPicture(data[0]?.art?.artid)
   }
 
 
@@ -32,9 +33,15 @@ const audioCtx = new AudioContext();
   //https://media.merriam-webster.com/audio/prons/en/us/mp3/${audio.charAt(0)}/${audio}.mp3
 
   function playSound(audio) {
-    const a = new Audio(`https://media.merriam-webster.com/audio/prons/en/us/mp3/${audio.charAt(0)}/${audio}.mp3`);
-    audioCtx.resume()
-    a.play();
+      if (audio) {
+        myAudioContext.resume().then(() => {
+        const a = new Audio(`https://media.merriam-webster.com/audio/prons/en/us/mp3/${audio.charAt(0)}/${audio}.mp3`);
+        a.loop = false;
+        a.currentTime = 0;
+        a.volume = 0.2;
+        a.play()
+      })
+    }
   }
 
   useEffect(() => {
@@ -49,6 +56,8 @@ const audioCtx = new AudioContext();
         {wordOfTheDay}
       </b>
       <br/>
+      <img src={picture ? `https://www.merriam-webster.com/assets/mw/static/art/dict/${picture}.gif` : ''} alt={picture ? wordOfTheDay : 'no image found'}/>
+      <br/>
       {definition?.map((item, index) => {
         return <div key={index}>{item}</div>
       })}
@@ -59,7 +68,7 @@ const audioCtx = new AudioContext();
       <h4>
         Audio:
       </h4>
-      <button onClick={audio && playSound(audio)}>Play it!</button>
+      <button onClick={() => playSound(audio)}>Play it!</button>
     </div>
   )
 }

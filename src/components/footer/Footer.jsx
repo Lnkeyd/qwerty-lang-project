@@ -5,12 +5,10 @@ import styles from './footer.module.css'
 const Footer = () => {
   return (
     <div className={styles.container}>
-        <div className={styles.flex}>
-            <a href='https://github.com/Lnkeyd' rel="noreferrer" target="_blank">
-                <AiFillGithub className={styles.icon}/>
-            </a>
-            <p className={styles.text}>© 2022 Evgeniy Kozlov. All Rights Reserved.</p>
-        </div>
+        <a href='https://github.com/Lnkeyd' rel="noreferrer" target="_blank">
+            <AiFillGithub className={styles.icon}/>
+        </a>
+        <p className={styles.text}>© 2022 Evgeniy Kozlov. All Rights Reserved.</p>
     </div>
   )
 }

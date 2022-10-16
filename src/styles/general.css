@@ -5,6 +5,14 @@
     font-family: 'Mukta', sans-serif;
 }
 
+#root {
+    min-height: 100vh;
+}
+
+.App-content {
+    min-height: calc(100vh - 90px);
+}
+
 li {
     list-style: none;
 }
