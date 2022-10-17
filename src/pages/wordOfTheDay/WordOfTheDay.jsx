@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import he from 'he'
+import styles from './wordOfTheDay.module.css' 
 
 const WordOfTheDay = () => {
 window.AudioContext = window.AudioContext||window.webkitAudioContext;
@@ -49,7 +50,7 @@ const myAudioContext = new AudioContext();
   }, [])
 
   return (
-    <div className="wrapper">
+    <div className={styles.template}>
       <h2>Today's word of the day</h2>
       <h3>Will be...</h3>
       <b>
